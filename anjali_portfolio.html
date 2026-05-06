@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anjali | Web Developer & Digital Marketer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --pink: #ff4d8d;
+      --pink-light: #ff85b3;
+      --navy: #0f0c29;
+      --navy2: #1a1545;
+      --yellow: #ffe066;
+      --white: #ffffff;
+      --gray: #b0aec8;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── BG GRID ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,77,141,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,77,141,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    section, header, footer { position: relative; z-index: 1; }
+
+    /* ── FLOATING BLOBS ── */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--pink); top: -100px; right: -150px; }
+    .blob-2 { width: 400px; height: 400px; background: #7c3aed; bottom: 0; left: -100px; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: rgba(15,12,41,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--white) !important;
+      letter-spacing: -1px;
+    }
+
+    .navbar-brand span { color: var(--pink); }
+
+    .navbar-nav .nav-link {
+      color: var(--gray) !important;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      padding: 0.5rem 1rem !important;
+      transition: color 0.3s;
+    }
+    .navbar-nav .nav-link:hover { color: var(--white) !important; }
+
+    .btn-pink {
+      background: var(--pink);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 0.55rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-pink:hover { background: var(--pink-light); color: var(--white); transform: translateY(-2px); }
+
+    .btn-outline-pink {
+      background: transparent;
+      color: var(--pink);
+      border: 2px solid var(--pink);
+      border-radius: 50px;
+      padding: 0.55rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-outline-pink:hover { background: var(--pink); color: var(--white); transform: translateY(-2px); }
+
+    .navbar-toggler { border-color: var(--border); }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,77,141,0.9)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 0 4rem;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,77,141,0.12);
+      border: 1px solid rgba(255,77,141,0.3);
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      color: var(--pink);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title .accent { color: var(--pink); }
+    .hero-title .underline-yellow {
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-underline-offset: 6px;
+    }
+
+    .hero-desc {
+      color: var(--gray);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+    }
+    .stat-num span { color: var(--pink); }
+    .stat-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* HERO ILLUSTRATION */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .avatar-ring {
+      position: relative;
+      width: 360px;
+      height: 360px;
+    }
+
+    .avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: -15px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,77,141,0.3);
+      animation: spin 20s linear infinite;
+    }
+
+    .avatar-ring::after {
+      content: '';
+      position: absolute;
+      inset: -30px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,230,102,0.15);
+      animation: spin 30s linear infinite reverse;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .avatar-circle {
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy2), #2d1b69);
+      border: 3px solid rgba(255,77,141,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .avatar-initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 7rem;
+      font-weight: 900;
+      color: var(--pink);
+      opacity: 0.3;
+      user-select: none;
+    }
+
+    .avatar-icon-badge {
+      position: absolute;
+      background: var(--navy2);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .badge-top { top: 0; right: -20px; color: var(--yellow); border-color: rgba(255,230,102,0.3); }
+    .badge-bottom { bottom: 20px; left: -30px; color: var(--pink-light); border-color: rgba(255,77,141,0.3); }
+    .badge-right { top: 50%; right: -40px; transform: translateY(-50%); color: #a78bfa; border-color: rgba(167,139,250,0.3); }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 5rem 0; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 540px;
+    }
+
+    .divider {
+      width: 50px;
+      height: 3px;
+      background: var(--pink);
+      margin: 1.5rem 0;
+      border-radius: 3px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: rgba(26,21,69,0.5); }
+
+    .about-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    .info-label { color: var(--gray); min-width: 80px; }
+    .info-val { color: var(--white); font-weight: 500; word-break: break-all; }
+
+    /* ── SKILLS ── */
+    .skill-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s;
+    }
+    .skill-block:hover { border-color: var(--pink); transform: translateY(-3px); }
+
+    .skill-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(255,77,141,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--pink);
+      flex-shrink: 0;
+    }
+
+    .skill-name { font-weight: 600; font-size: 0.9rem; }
+    .skill-type { font-size: 0.72rem; color: var(--gray); }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: rgba(26,21,69,0.5); }
+
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--pink), transparent);
+    }
+
+    .timeline-item { position: relative; margin-bottom: 2.5rem; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--pink);
+      border: 2px solid var(--navy);
+      box-shadow: 0 0 0 4px rgba(255,77,141,0.2);
+    }
+
+    .timeline-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: border-color 0.3s;
+    }
+    .timeline-card:hover { border-color: rgba(255,77,141,0.4); }
+
+    .exp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .exp-company { color: var(--pink); font-size: 0.85rem; font-weight: 600; }
+    .exp-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--gray);
+      background: rgba(255,255,255,0.05);
+      border-radius: 50px;
+      padding: 0.25rem 0.75rem;
+      margin: 0.5rem 0;
+    }
+
+    .exp-list { list-style: none; margin-top: 0.75rem; }
+    .exp-list li {
+      font-size: 0.85rem;
+      color: var(--gray);
+      padding: 0.3rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .exp-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--pink);
+      font-size: 0.7rem;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      transition: all 0.3s;
+    }
+    .edu-card:hover { border-color: var(--pink); transform: translateY(-3px); }
+
+    .edu-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: rgba(255,77,141,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--pink);
+      flex-shrink: 0;
+    }
+
+    .edu-degree { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .edu-school { color: var(--pink); font-size: 0.82rem; font-weight: 500; }
+    .edu-year { color: var(--gray); font-size: 0.78rem; margin-top: 0.25rem; }
+
+    /* ── CONTACT ── */
+    #contact { background: rgba(26,21,69,0.5); }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255,77,141,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--pink);
+      flex-shrink: 0;
+    }
+
+    .contact-label { font-size: 0.72rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+    .contact-val { font-weight: 600; font-size: 0.9rem; word-break: break-all; }
+
+    /* contact form */
+    .form-control, .form-select {
+      background: rgba(255,255,255,0.05) !important;
+      border: 1px solid var(--border) !important;
+      color: var(--white) !important;
+      border-radius: 12px !important;
+      padding: 0.75rem 1rem !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--pink) !important;
+      box-shadow: 0 0 0 3px rgba(255,77,141,0.15) !important;
+      background: rgba(255,255,255,0.07) !important;
+    }
+    .form-control::placeholder { color: var(--gray) !important; }
+    .form-label { font-size: 0.82rem; font-weight: 600; color: var(--gray); margin-bottom: 0.5rem; }
+    textarea.form-control { resize: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0820;
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    footer p { color: var(--gray); font-size: 0.82rem; margin: 0; }
+    footer span { color: var(--pink); }
+
+    /* ── SCROLL TOP ── */
+    #scrollTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: var(--white);
+      border: none;
+      font-size: 1.1rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(255,77,141,0.4);
+      transition: transform 0.3s;
+    }
+    #scrollTop:hover { transform: translateY(-3px); }
+    #scrollTop.show { display: flex; }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 991px) {
+      .avatar-ring, .avatar-circle { width: 260px; height: 260px; }
+      .avatar-initials { font-size: 5rem; }
+      .badge-right { display: none; }
+    }
+
+    @media (max-width: 767px) {
+      #home { padding: 5rem 0 3rem; text-align: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-stats { justify-content: center; }
+      .hero-visual { margin-top: 3rem; }
+      .avatar-ring, .avatar-circle { width: 220px; height: 220px; }
+      .avatar-initials { font-size: 4rem; }
+      .badge-bottom, .badge-top { display: none; }
+      .section-subtitle { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#home">Anjali<span>.</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a class="btn-pink" href="#contact">Hire Me</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="home">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 fade-up">
+        <div class="hero-badge">
+          <i class="fa-solid fa-circle-dot" style="font-size:0.6rem"></i>
+          Available for Work
+        </div>
+        <h1 class="hero-title">
+          Web <span class="accent">Developer</span><br />
+          &amp; <span class="underline-yellow">Digital</span><br />
+          Marketer
+        </h1>
+        <p class="hero-desc">
+          Hi, I'm <strong style="color:var(--white)">Anjali</strong> — I build fast, responsive, SEO-friendly websites
+          using WordPress, HTML, CSS, Bootstrap, PHP &amp; JavaScript. I also create
+          AI-powered promotional videos and digital branding content.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#contact" class="btn-pink"><i class="fa-solid fa-paper-plane me-2"></i>Let's Talk</a>
+          <a href="mailto:anjalirathore94236@gmail.com" class="btn-outline-pink"><i class="fa-solid fa-download me-2"></i>Contact</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">2<span>+</span></div>
+            <div class="stat-label">Years Exp.</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">3<span>+</span></div>
+            <div class="stat-label">Companies</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">12<span>+</span></div>
+            <div class="stat-label">Skills</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 hero-visual fade-up" style="transition-delay:0.2s">
+        <div class="avatar-ring">
+          <div class="avatar-circle">
+            <div class="avatar-initials">AR</div>
+          </div>
+          <div class="avatar-icon-badge badge-top">
+            <i class="fa-brands fa-wordpress"></i> WordPress Expert
+          </div>
+          <div class="avatar-icon-badge badge-bottom">
+            <i class="fa-solid fa-magnifying-glass"></i> SEO Specialist
+          </div>
+          <div class="avatar-icon-badge badge-right">
+            <i class="fa-solid fa-code"></i> Full Stack
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5 fade-up">
+        <div class="section-tag">About Me</div>
+        <h2 class="section-title">Professional Web <span style="color:var(--pink)">Developer</span></h2>
+        <div class="divider"></div>
+        <p class="section-subtitle mb-4">
+          I'm a passionate Web Developer &amp; Digital Marketer with 2+ years of experience
+          building responsive, fast, and SEO-friendly websites. I blend clean code with
+          creative design to deliver complete digital solutions.
+        </p>
+        <p class="section-subtitle">
+          Beyond development, I create graphic design, social media content, and
+          AI-powered promotional videos that help brands connect with their audience.
+        </p>
+      </div>
+      <div class="col-lg-7 fade-up" style="transition-delay:0.15s">
+        <div class="about-card">
+          <h6 style="color:var(--pink);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem">Personal Details</h6>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="info-row">
+                <span class="info-label"><i class="fa-solid fa-user me-1" style="color:var(--pink)"></i> Name</span>
+                <span class="info-val">Anjali</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label"><i class="fa-solid fa-phone me-1" style="color:var(--pink)"></i> Phone</span>
+                <span class="info-val">9560873718</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label"><i class="fa-solid fa-envelope me-1" style="color:var(--pink)"></i> Email</span>
+                <span class="info-val" style="font-size:0.8rem">anjalirathore94236@gmail.com</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="info-row">
+                <span class="info-label"><i class="fa-solid fa-cake-candles me-1" style="color:var(--pink)"></i> DOB</span>
+                <span class="info-val">02 Aug 2004</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label"><i class="fa-solid fa-flag me-1" style="color:var(--pink)"></i> Nation</span>
+                <span class="info-val">Indian</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label"><i class="fa-solid fa-language me-1" style="color:var(--pink)"></i> Lang.</span>
+                <span class="info-val">Hindi &amp; English</span>
+              </div>
+            </div>
+          </div>
+          <hr style="border-color:var(--border);margin:1.5rem 0" />
+          <div class="d-flex flex-wrap gap-2">
+            <a href="tel:9560873718" class="btn-pink btn-sm" style="font-size:0.8rem;padding:0.45rem 1.2rem">
+              <i class="fa-solid fa-phone me-1"></i>Call Me
+            </a>
+            <a href="mailto:anjalirathore94236@gmail.com" class="btn-outline-pink btn-sm" style="font-size:0.8rem;padding:0.45rem 1.2rem">
+              <i class="fa-solid fa-envelope me-1"></i>Email Me
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section id="skills">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <div class="section-tag">What I Know</div>
+      <h2 class="section-title">My <span style="color:var(--pink)">Skills</span></h2>
+      <div class="divider mx-auto"></div>
+    </div>
+    <div class="row g-3 fade-up" style="transition-delay:0.1s">
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-brands fa-wordpress"></i></div>
+          <div><div class="skill-name">WordPress</div><div class="skill-type">CMS</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-brands fa-html5" style="color:#e34c26"></i></div>
+          <div><div class="skill-name">HTML5</div><div class="skill-type">Markup</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-brands fa-css3-alt" style="color:#264de4"></i></div>
+          <div><div class="skill-name">CSS3</div><div class="skill-type">Styling</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-brands fa-js" style="color:#f7df1e"></i></div>
+          <div><div class="skill-name">JavaScript</div><div class="skill-type">Language</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-brands fa-bootstrap" style="color:#7952b3"></i></div>
+          <div><div class="skill-name">Bootstrap 5</div><div class="skill-type">Framework</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-brands fa-php" style="color:#8892be"></i></div>
+          <div><div class="skill-name">PHP</div><div class="skill-type">Backend</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-solid fa-database" style="color:#00758f"></i></div>
+          <div><div class="skill-name">MySQL</div><div class="skill-type">Database</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-brands fa-github"></i></div>
+          <div><div class="skill-name">GitHub</div><div class="skill-type">Version Control</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-solid fa-magnifying-glass" style="color:#4caf50"></i></div>
+          <div><div class="skill-name">SEO</div><div class="skill-type">Content Creation</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-solid fa-palette" style="color:#00c4cc"></i></div>
+          <div><div class="skill-name">Canva</div><div class="skill-type">Design</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-solid fa-scissors" style="color:#fe2c55"></i></div>
+          <div><div class="skill-name">CapCut</div><div class="skill-type">Video Editing</div></div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-block">
+          <div class="skill-icon"><i class="fa-solid fa-video" style="color:#ff9800"></i></div>
+          <div><div class="skill-name">AI Videos</div><div class="skill-type">Promo Content</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 fade-up">
+        <div class="section-tag">Career</div>
+        <h2 class="section-title">Work <span style="color:var(--pink)">Experience</span></h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">
+          2+ years building responsive websites, managing digital content, and creating AI-powered brand solutions across multiple companies.
+        </p>
+      </div>
+      <div class="col-lg-8 fade-up" style="transition-delay:0.15s">
+        <div class="timeline">
+
+          <!-- Job 1 -->
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="exp-title">Web Developer &amp; Digital Marketer</div>
+              <div class="exp-company">Vishall Landbase Pvt Ltd</div>
+              <div class="exp-date"><i class="fa-regular fa-calendar"></i> July 2025 – Present</div>
+              <ul class="exp-list">
+                <li>Design, develop &amp; maintain responsive custom websites with mobile optimization &amp; cross-browser compatibility</li>
+                <li>Customize layouts using HTML, CSS, JavaScript &amp; PHP to enhance user experience</li>
+                <li>Manage digital content — graphic design, social media posts &amp; brand marketing materials</li>
+                <li>Create AI-based promotional videos to support marketing campaigns</li>
+                <li>Work on hotel platform listings, managing property details, images &amp; promotional updates</li>
+                <li>Collect &amp; organize open-source data to add hotels with SEO-friendly descriptions</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="exp-title">Web Developer</div>
+              <div class="exp-company">WBN Technology</div>
+              <div class="exp-date"><i class="fa-regular fa-calendar"></i> July 2024 – June 2025</div>
+              <ul class="exp-list">
+                <li>Designed &amp; developed custom WordPress websites with SEO optimization &amp; user-friendly layouts</li>
+                <li>Customized themes, plugins &amp; website structures using HTML, CSS, JS &amp; PHP</li>
+                <li>Implemented on-page SEO techniques to improve search rankings &amp; user engagement</li>
+                <li>Managed content creation &amp; social media post design to boost brand visibility</li>
+                <li>Ensured smooth functionality, fast loading speed &amp; cross-device compatibility</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Job 3 -->
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="exp-title">Web Developer (Intern)</div>
+              <div class="exp-company">Digital Dwar</div>
+              <div class="exp-date"><i class="fa-regular fa-calendar"></i> October 2023 – June 2024</div>
+              <ul class="exp-list">
+                <li>Developed &amp; maintained responsive WordPress websites with mobile-first design</li>
+                <li>Customized themes &amp; plugins using HTML, CSS &amp; PHP</li>
+                <li>Handled graphic design &amp; social media post creation for brand visibility</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDUCATION ══ -->
+<section id="education">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <div class="section-tag">Academic</div>
+      <h2 class="section-title">My <span style="color:var(--pink)">Education</span></h2>
+      <div class="divider mx-auto"></div>
+    </div>
+    <div class="row g-4 fade-up" style="transition-delay:0.1s">
+
+      <div class="col-md-6">
+        <div class="edu-card">
+          <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div>
+            <div class="edu-degree">B.Com (Graduation)</div>
+            <div class="edu-school">Delhi University</div>
+            <div class="edu-year"><i class="fa-regular fa-calendar me-1"></i>2022 – 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="edu-card">
+          <div class="edu-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <div>
+            <div class="edu-degree">Web Development Diploma</div>
+            <div class="edu-school">WCSC</div>
+            <div class="edu-year"><i class="fa-regular fa-calendar me-1"></i>2022 – 2023</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="edu-card">
+          <div class="edu-icon"><i class="fa-solid fa-book-open"></i></div>
+          <div>
+            <div class="edu-degree">12th Standard (CBSE)</div>
+            <div class="edu-school">CBSE Board</div>
+            <div class="edu-year"><i class="fa-regular fa-calendar me-1"></i>2022</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="edu-card">
+          <div class="edu-icon"><i class="fa-solid fa-school"></i></div>
+          <div>
+            <div class="edu-degree">10th Standard (CBSE)</div>
+            <div class="edu-school">CBSE Board</div>
+            <div class="edu-year"><i class="fa-regular fa-calendar me-1"></i>2020</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <div class="section-tag">Let's Connect</div>
+      <h2 class="section-title">Get In <span style="color:var(--pink)">Touch</span></h2>
+      <div class="divider mx-auto"></div>
+      <p class="section-subtitle mx-auto">Have a project in mind or want to collaborate? Feel free to reach out — I'd love to work together!</p>
+    </div>
+    <div class="row g-4 fade-up" style="transition-delay:0.1s">
+
+      <div class="col-lg-5">
+        <div class="contact-card h-100">
+          <h6 style="color:var(--pink);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem">Contact Info</h6>
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="contact-label">Phone</div>
+              <div class="contact-val">+91 9560873718</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-val">anjalirathore94236@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-map-pin"></i></div>
+            <div>
+              <div class="contact-label">Location</div>
+              <div class="contact-val">Delhi, India</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
+            <div>
+              <div class="contact-label">GitHub</div>
+              <div class="contact-val" style="font-size:0.8rem">anjalirathore890</div>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex gap-2 flex-wrap">
+            <a href="tel:9560873718" class="btn-pink" style="font-size:0.82rem">
+              <i class="fa-solid fa-phone me-1"></i>Call Now
+            </a>
+            <a href="mailto:anjalirathore94236@gmail.com" class="btn-outline-pink" style="font-size:0.82rem">
+              <i class="fa-solid fa-envelope me-1"></i>Email
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="contact-card">
+          <h6 style="color:var(--pink);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem">Send a Message</h6>
+          <div id="formMsg" style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;border-radius:10px;font-size:0.85rem;font-weight:600;background:rgba(255,77,141,0.12);border:1px solid rgba(255,77,141,0.3);color:var(--pink)"></div>
+          <div class="mb-3">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-control" id="fname" placeholder="e.g. Rahul Sharma" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="femail" placeholder="example@email.com" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-control" id="fsubject" placeholder="Project inquiry / Collaboration" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" id="fmsg" rows="4" placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button class="btn-pink w-100" onclick="submitForm()" style="padding:0.75rem;font-size:0.9rem;border-radius:12px">
+            <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container">
+    <p>
+      Designed &amp; Developed with <span>♥</span> by <strong style="color:var(--white)">Anjali</strong>
+      &nbsp;|&nbsp; Web Developer &amp; Digital Marketer
+    </p>
+    <p style="margin-top:0.5rem;font-size:0.75rem;opacity:0.5">&copy; 2025 All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Scroll Top -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Scroll top button
+  window.addEventListener('scroll', () => {
+    document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400);
+  });
+
+  // Smooth nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+      const bs = document.getElementById('navMenu');
+      if (bs.classList.contains('show')) new bootstrap.Collapse(bs).hide();
+    });
+  });
+
+  // Active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#'+cur ? 'var(--white)' : '';
+    });
+  });
+
+  // Form
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    const msg = document.getElementById('fmsg').value.trim();
+    const fb = document.getElementById('formMsg');
+    if (!name || !email || !msg) {
+      fb.textContent = '⚠ Please fill in all required fields.';
+      fb.style.display = 'block';
+      return;
+    }
+    fb.textContent = '✓ Thank you, ' + name + '! Your message has been received. I\'ll get back to you soon.';
+    fb.style.background = 'rgba(76,175,80,0.12)';
+    fb.style.borderColor = 'rgba(76,175,80,0.3)';
+    fb.style.color = '#4caf50';
+    fb.style.display = 'block';
+    ['fname','femail','fsubject','fmsg'].forEach(id => document.getElementById(id).value = '');
+  }
+</script>
+</body>
+</html>
